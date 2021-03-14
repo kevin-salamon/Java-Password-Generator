@@ -16,6 +16,43 @@ public class App {
 		System.out.println("Would you like special characters in the password?");
 		String specialConfirm = scan.nextLine();
 		
+		ArrayList<String> selectionArray = new ArrayList<String>();
+		String password = "";
+		String[] lowercaseArr = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+		String[] uppercaseArr = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+		String[] numbersArr = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		String[] specialArr = {"!", "@", "#", "$", "%", "&", "*"};
+		
+		if (lowercaseConfirm.equals("Yes") || lowercaseConfirm.equals("Y") || lowercaseConfirm.equals("yes")) {
+			for (int i = 0; i < lowercaseArr.length; i++) {
+				selectionArray.add(lowercaseArr[i]);
+			}
+		}
+		
+		if (uppercaseConfirm.equals("Yes") || uppercaseConfirm.equals("Y") || uppercaseConfirm.equals("yes")) {
+			for (int i = 0; i < uppercaseArr.length; i++) {
+				selectionArray.add(uppercaseArr[i]);
+			}
+		}
+
+		if (numberConfirm.equals("Yes") || numberConfirm.equals("Y") || numberConfirm.equals("yes")) {
+			for (int i = 0; i < numbersArr.length; i++) {
+				selectionArray.add(numbersArr[i]);
+			}
+		}
+
+		if (specialConfirm.equals("Yes") || specialConfirm.equals("Y") || specialConfirm.equals("yes")) {
+			System.out.println("SPECIAL CHARACTERS ALLOWED.");
+			for (int i = 0; i < specialArr.length; i++) {
+				selectionArray.add(specialArr[i]);
+			}
+		}
+		
+		if (selectionArray.size() == 0) {
+			System.out.println("PLEASE ENSURE YOU CHOOSE AT LEAST ONE CHARACTER TYPE! Please restart the program.");
+			System.exit(0);
+		}
+		
 		String charCount;
 		System.out.println("How many characters would you like in your password? It can range from 8 to 128 characters.");
 		do {
@@ -27,38 +64,9 @@ public class App {
 		scan.close();
 		System.out.printf("Your password will be %s characters long", charCount).println();
 		
-		ArrayList<String> selectionArray = new ArrayList<String>();
-		String password = "";
-		String[] lowercaseArr = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-		String[] uppercaseArr = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-		String[] numbersArr = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-		String[] specialArr = {"!", "@", "#", "$", "%", "&", "*"};
-		
-		if (lowercaseConfirm == "Yes" || lowercaseConfirm == "Y" || lowercaseConfirm == "yes") {
-			for (int i = 0; i < lowercaseArr.length; i++) {
-				selectionArray.add(lowercaseArr[i]);
-			}
-		}
-		if (uppercaseConfirm == "Yes" || uppercaseConfirm == "Y" || uppercaseConfirm == "yes") {
-			for (int i = 0; i < uppercaseArr.length; i++) {
-				selectionArray.add(uppercaseArr[i]);
-			}
-		}
-		if (numberConfirm == "Yes" || numberConfirm == "Y" || numberConfirm == "yes") {
-			for (int i = 0; i < numbersArr.length; i++) {
-				selectionArray.add(numbersArr[i]);
-			}
-		}
-		if (specialConfirm == "Yes" || specialConfirm == "Y" || specialConfirm == "yes") {
-			for (int i = 0; i < specialArr.length; i++) {
-				selectionArray.add(specialArr[i]);
-			}
-		}
-		
 		for (int i = 0; i < Integer.parseInt(charCount); i++) {
-		 long selector = Math.round(Math.random() * Integer.parseInt(charCount));
-		 System.out.println("INDEX OF CHOSEN ITEM: " + selector);
-//		 password += selectionArray.get((int) selector);
+		 int selector = (int)Math.round(Math.random() * selectionArray.size());
+		 password += selectionArray.get(selector);
 		}
 		
 		System.out.println("HERE IS YOUR FINISHED PASSWORD: " + password);
