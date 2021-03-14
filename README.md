@@ -1,2 +1,2 @@
 # Java-Password-Generator
-Simple app for my Java Practive
+Simple app for my Java Practice
